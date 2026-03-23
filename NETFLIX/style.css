@@ -1,0 +1,919 @@
+/* ===== VARIÁVEIS GLOBAIS ===== */
+:root {
+    --netflix-red: #E50914;
+    --netflix-dark: #141414;
+    --netflix-gray: #808080;
+    --netflix-light-gray: #e5e5e5;
+    --netflix-hover: #fff;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--netflix-dark);
+    color: #fff;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+/* ===== TELA DE PERFIS ===== */
+.perfis-page {
+    background: var(--netflix-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.netflix-logo {
+    position: fixed;
+    top: 30px;
+    left: 50px;
+    color: var(--netflix-red);
+    font-size: 45px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.netflix-logo:hover {
+    transform: scale(1.05);
+}
+
+.perfis-container {
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.quem-esta-assistindo {
+    color: #fff;
+    font-size: 3.5vw;
+    font-weight: 400;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+}
+
+/* ===== GRID DE PERFIS ===== */
+.perfis-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+/* CARD DO PERFIL */
+.perfil-card {
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    width: 150px;
+    transition: all var(--transition-speed) ease;
+}
+
+/* TOOLTIP - NOME AO PASSAR O MOUSE */
+.perfil-card::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 100;
+}
+
+.perfil-card:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* CONTAINER DO AVATAR */
+.avatar-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    border: 3px solid transparent;
+    transition: border 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* IMAGEM DO AVATAR */
+.avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+}
+
+/* EFEITO SOMENTE BORDA VERMELHA - SEM ZOOM, SEM SOMBRA */
+.perfil-card:hover .avatar-container {
+    border-color: #E50914;
+}
+
+/* REMOVER ZOOM DA IMAGEM */
+.perfil-card:hover .avatar {
+    transform: none;
+}
+
+/* REMOVER OVERLAY VERMELHO */
+.avatar-hover-effect {
+    display: none;
+}
+
+/* NOME DO PERFIL */
+.perfil-nome {
+    display: block;
+    margin-top: 15px;
+    color: var(--netflix-gray);
+    font-size: 18px;
+    font-weight: 400;
+    transition: color var(--transition-speed) ease;
+    letter-spacing: 0.5px;
+}
+
+.perfil-card:hover .perfil-nome {
+    color: #fff;
+}
+
+/* ===== PERFIL ESPECIAL "NÓS" ===== */
+.perfil-card.especial .avatar-container {
+    border: 3px solid transparent;
+}
+
+.perfil-card.especial .perfil-nome {
+    color: var(--netflix-gray);
+}
+
+.perfil-card.especial:hover .avatar-container {
+    border-color: #E50914;
+    animation: none;
+}
+
+.perfil-card.especial:hover .perfil-nome {
+    color: #fff;
+}
+
+/* ===== BOTÃO GERENCIAR PERFIS ===== */
+.gerenciar-perfis {
+    background: transparent;
+    border: 1px solid var(--netflix-gray);
+    color: var(--netflix-gray);
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 30px;
+    border-radius: 4px;
+}
+
+.gerenciar-perfis:hover {
+    border-color: var(--netflix-red);
+    color: var(--netflix-red);
+    background: transparent;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    z-index: 1000;
+    transition: background 0.3s ease;
+}
+
+.navbar.solid {
+    background: var(--netflix-dark);
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.nav-logo {
+    color: var(--netflix-red);
+    font-size: 35px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: var(--netflix-light-gray);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--netflix-red);
+}
+
+.nav-links a.active {
+    color: #fff;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.perfil-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.perfil-icone {
+    width: 35px;
+    height: 35px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.perfil-menu:hover .perfil-icone {
+    border: 2px solid var(--netflix-red);
+}
+
+/* ===== HERO SECTION COM CARROSSEL - VERSÃO FINAL CORRIGIDA ===== */
+.hero.carrossel-hero {
+    position: relative;
+    height: 85vh;
+    min-height: 600px;
+    max-height: 750px;
+    overflow: hidden;
+    padding-left: 60px;
+    margin-bottom: 30px;
+}
+
+.hero-slide {
+    position: absolute;
+    top: -10%; /* Puxa a imagem um pouco para cima para mostrar mais o rosto */
+    left: 0;
+    width: 100%;
+    height: 120%; /* Aumenta a altura da imagem para cobrir melhor */
+    background-size: cover !important;
+    background-position: center 30% !important;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+/* Gradiente sobre as imagens - ajustado para fotos maiores */
+.hero-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.95) 15%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.2) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 650px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Alinha o conteúdo na parte inferior */
+    padding-bottom: 120px; /* Espaço do fundo */
+    padding-top: 80px;
+}
+
+.hero-titulo {
+    font-size: 65px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.1;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    animation: fadeInUp 0.8s ease;
+}
+
+.hero-descricao {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #fff;
+    margin-bottom: 30px;
+    max-width: 600px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    animation: fadeInUp 0.8s 0.1s ease both;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    animation: fadeInUp 0.8s 0.2s ease both;
+}
+
+.btn-assistir {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-assistir:hover {
+    background: rgba(255,255,255,0.8);
+    transform: scale(1.05);
+}
+
+.btn-info {
+    background: rgba(109,109,110,0.7);
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-info:hover {
+    background: rgba(109,109,110,0.9);
+    transform: scale(1.05);
+}
+
+.hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(to top, var(--netflix-dark), transparent);
+    z-index: 2;
+}
+
+/* ===== CATÁLOGO E CARROSSÉIS ===== */
+.catalogo {
+    padding: 0 60px;
+    margin-top: -80px; /* Aumentado o negativo para subir mais */
+    position: relative;
+    z-index: 5;
+}
+
+.categoria {
+    margin-bottom: 50px;
+}
+
+.categoria-titulo {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: #fff;
+    position: relative;
+    z-index: 6;
+}
+
+/* ===== BOTÕES DOS CARROSSÉIS ===== */
+.carrossel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.carrossel {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 20px 0;
+    scrollbar-width: none;
+    width: 100%;
+}
+
+.carrossel::-webkit-scrollbar {
+    display: none;
+}
+
+/* BOTÕES DOS CARROSSÉIS */
+.carrossel-btn {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    backdrop-filter: blur(2px);
+}
+
+.carrossel-btn:hover {
+    background: rgba(229, 9, 20, 0.6);
+    width: 45px;
+    height: 45px;
+}
+
+.carrossel-btn.anterior {
+    left: 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.carrossel-btn.proximo {
+    right: 0;
+    border-radius: 4px 0 0 4px;
+}
+
+/* ===== CARDS DO CARROSSEL ===== */
+.card {
+    flex: 0 0 auto;
+    width: 260px;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.08);
+    z-index: 15;
+    border: 2px solid var(--netflix-red);
+}
+
+.card img {
+    width: 100%;
+    height: 146px;
+    object-fit: cover;
+}
+
+.card-hover {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 10px 10px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .card-hover {
+    opacity: 1;
+}
+
+.card-hover h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.card-hover p {
+    font-size: 12px;
+    color: #ccc;
+}
+
+/* ===== BOTÕES DO HERO ===== */
+.hero-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-btn:hover {
+    background: rgba(229, 9, 20, 0.7);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.hero-btn.anterior {
+    left: 15px;
+}
+
+.hero-btn.proximo {
+    right: 15px;
+}
+
+/* Indicadores do carrossel */
+.hero-indicadores {
+    position: absolute;
+    bottom: 30px;
+    right: 60px;
+    z-index: 10;
+    display: flex;
+    gap: 8px;
+}
+
+.indicador {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.indicador.active {
+    background: var(--netflix-red);
+    transform: scale(1.2);
+    width: 12px;
+    height: 12px;
+}
+
+.indicador:hover {
+    background: white;
+    transform: scale(1.2);
+}
+
+/* ===== MODAL ===== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #181818;
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    animation: slideIn 0.3s ease;
+}
+
+.modal-content h2 {
+    color: var(--netflix-red);
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.modal-content p {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.modal-btn {
+    background: var(--netflix-red);
+    color: #fff;
+    border: none;
+    padding: 12px 40px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-btn:hover {
+    background: #f40612;
+    transform: scale(1.05);
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: var(--netflix-red);
+}
+
+.modal-video {
+    width: 100%;
+    height: 400px;
+    background: #000;
+    margin-bottom: 20px;
+}
+
+.modal-video img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-info {
+    text-align: left;
+}
+
+.modal-metadata {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.match {
+    color: #46d369;
+    font-weight: bold;
+}
+
+.ano, .duracao {
+    color: #ccc;
+}
+
+/* ===== ANIMAÇÕES ===== */
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 1024px) {
+    .perfis-grid {
+        gap: 20px;
+    }
+    
+    .perfil-card {
+        width: 120px;
+    }
+    
+    .avatar-container {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .hero-titulo {
+        font-size: 50px;
+    }
+    
+    .hero-content {
+        padding-bottom: 100px;
+    }
+    
+    .card {
+        width: 220px;
+    }
+    
+    .card img {
+        height: 124px;
+    }
+}
+
+@media (max-width: 768px) {
+    .netflix-logo {
+        left: 20px;
+        font-size: 30px;
+    }
+    
+    .quem-esta-assistindo {
+        font-size: 25px;
+    }
+    
+    .perfis-grid {
+        gap: 15px;
+    }
+    
+    .perfil-card {
+        width: 100px;
+    }
+    
+    .avatar-container {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .perfil-nome {
+        font-size: 14px;
+    }
+    
+    .hero.carrossel-hero {
+        padding-left: 30px;
+        height: 70vh;
+        min-height: 500px;
+    }
+    
+    .hero-titulo {
+        font-size: 40px;
+    }
+    
+    .hero-content {
+        padding-bottom: 80px;
+    }
+    
+    .hero-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+    }
+    
+    .hero-indicadores {
+        right: 30px;
+    }
+    
+    .catalogo {
+        padding: 0 30px;
+        margin-top: -60px;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+    
+    .carrossel-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+    }
+    
+    .card {
+        width: 200px;
+    }
+    
+    .card img {
+        height: 113px;
+    }
+}
+
+@media (max-width: 480px) {
+    .perfil-card {
+        width: 80px;
+    }
+    
+    .avatar-container {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .gerenciar-perfis {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .hero-titulo {
+        font-size: 32px;
+    }
+    
+    .hero-descricao {
+        font-size: 16px;
+    }
+    
+    .btn-assistir,
+    .btn-info {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+    
+    .hero-btn {
+        display: none;
+    }
+    
+    .hero-indicadores {
+        bottom: 20px;
+        right: 50%;
+        transform: translateX(50%);
+    }
+    
+    .hero-content {
+        padding-bottom: 60px;
+    }
+    
+    .catalogo {
+        margin-top: -40px;
+    }
+    
+    .card {
+        width: 160px;
+    }
+    
+    .card img {
+        height: 90px;
+    }
+    
+    .carrossel-btn {
+        width: 25px;
+        height: 25px;
+        font-size: 16px;
+    }
+}
+
+/* ===== SCROLL PERSONALIZADO ===== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--netflix-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--netflix-gray);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--netflix-red);
+}
+

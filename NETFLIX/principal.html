@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa Netflix</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- NAVBAR ESTILO NETFLIX -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <h1 class="nav-logo">NETFLIX</h1>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Início</a></li>
+                <li><a href="#">Séries</a></li>
+                <li><a href="#">Filmes</a></li>
+                <li><a href="#">Bombando</a></li>
+                <li><a href="#">Minha lista</a></li>
+                <li><a href="#">Nossa história</a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-right">
+            <div class="perfil-menu">
+                <img src="imagens/login/nos_icone.jpg" alt="Perfil" class="perfil-icone">
+                <span>▼</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION COM CARROSSEL DE FOTOS -->
+    <section class="hero carrossel-hero">
+        <!-- Slides do carrossel - COLOQUE AQUI AS FOTOS DO CASAL -->
+        <div class="hero-slide active" style="background-image: linear-gradient(to right, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.4) 60%, transparent), url('imagens/login/nos_icone.jpg');"></div>
+        <div class="hero-slide" style="background-image: linear-gradient(to right, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.4) 60%, transparent), url('imagens/login/kadu_icone.jpg');"></div>
+        <div class="hero-slide" style="background-image: linear-gradient(to right, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.4) 60%, transparent), url('imagens/login/manu_icone.jpg');"></div>
+        <div class="hero-slide" style="background-image: linear-gradient(to right, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.4) 60%, transparent), url('imagens/principal/primeira troca de olhares.jpg');"></div>
+        <div class="hero-slide" style="background-image: linear-gradient(to right, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.4) 60%, transparent), url('imagens/principal/primeirobj.jpg');"></div>
+        
+        <div class="hero-content">
+            <h2 class="hero-titulo">NOSSA HISTÓRIA DE AMOR</h2>
+            <p class="hero-descricao">Desde aquele primeiro encontro até hoje, cada momento tem sido especial. Assista nossa jornada e prepare a pipoca!</p>
+            <div class="hero-buttons">
+                <button class="btn-assistir" onclick="abrirAssinatura()">▶ Assistir</button>
+                <button class="btn-info" onclick="mostrarHistoria()">ⓘ Mais informações</button>
+            </div>
+        </div>
+        
+        <!-- Indicadores do carrossel -->
+        <div class="hero-indicadores">
+            <span class="indicador active" onclick="mudarSlide(0)"></span>
+            <span class="indicador" onclick="mudarSlide(1)"></span>
+            <span class="indicador" onclick="mudarSlide(2)"></span>
+            <span class="indicador" onclick="mudarSlide(3)"></span>
+            <span class="indicador" onclick="mudarSlide(4)"></span>
+        </div>
+        
+        <!-- Botões de navegação -->
+        <button class="hero-btn anterior" onclick="slideAnterior()">❮</button>
+        <button class="hero-btn proximo" onclick="proximoSlide()">❯</button>
+        
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- ===== CARROSSÉIS DE CONTEÚDO COM MODAIS INDEPENDENTES ===== -->
+    <div class="catalogo">
+        
+        <!-- ===== SEÇÃO 1: INÍCIO DE UMA HISTÓRIA ===== -->
+        <section class="categoria">
+            <h2 class="categoria-titulo">Início de uma História</h2>
+            <div class="carrossel-container">
+                <button class="carrossel-btn anterior" onclick="moverCarrossel(this, 'direita')">‹</button>
+                <div class="carrossel" id="carrossel-inicio">
+                    
+                    <!-- CARD 1 - Quando a gente se notou -->
+                    <div class="card" onclick="abrirModal('modal1')">
+                        <img src="imagens/principal/primeira troca de olhares.jpg" alt="Primeiro encontro" onerror="this.src='https://via.placeholder.com/280x158/E50914/fff?text=1%C2%BA+Encontro'">
+                        <div class="card-hover">
+                            <h3>Quando a gente se notou</h3>
+                            <p>03 de Fevereiro, 2022</p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2 - O dia do nosso primeiro Beijo -->
+                    <div class="card" onclick="abrirModal('modal2')">
+                        <img src="imagens/principal/primeirobj.jpg" alt="Segundo encontro" onerror="this.src='https://via.placeholder.com/280x158/E50914/fff?text=2%C2%BA+Encontro'">
+                        <div class="card-hover">
+                            <h3>O dia do nosso primeiro Beijo</h3>
+                            <p>20 de Fevereiro, 2022</p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 3 - Primeiros encontros -->
+                    <div class="card" onclick="abrirModal('modal3')">
+                        <img src="imagens/principal/primeiros passeios.jpg" alt="Primeiros encontros" onerror="this.src='https://via.placeholder.com/280x158/E50914/fff?text=Primeiros+Encontros'">
+                        <div class="card-hover">
+                            <h3>Primeiros encontros</h3>
+                            <p>Momento da verdade</p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 4 - Primeiro Cirio -->
+                    <div class="card" onclick="abrirModal('modal4')">
+                        <img src="imagens/principal/primeiro_cirio.jpg" alt="Primeiro Cirio" onerror="this.src='https://via.placeholder.com/280x158/E50914/fff?text=Primeiro+Cirio'">
+                        <div class="card-hover">
+                            <h3>Primeiro Cirio</h3>
+                            <p>Primeira vez que ela veio na minha casa</p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 5 - Alianças -->
+                    <div class="card" onclick="abrirModal('modal5')">
+                        <img src="imagens/principal/primeiro_passeio.jpg" alt="Alianças" onerror="this.src='https://via.placeholder.com/280x158/E50914/fff?text=Alian%C3%A7as'">
+                        <div class="card-hover">
+                            <h3>Primeiros passeios</h3>
+                            <p>Passeio na praia</p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 6 - Primeira Foto Juntos -->
+                    <div class="card" onclick="abrirModal('modal6')">
+                        <img src="imagens/principal/festaparent.jpg" alt="Primeira Foto" onerror="this.src='https://via.placeholder.com/280x158/E50914/fff?text=Primeira+Foto'">
+                        <div class="card-hover">
+                            <h3>A primeira festa da Familia</h3>
+                            <p>O dia que me senti da Familia</p>
+                        </div>
+                    </div>
+
+                     <!-- CARD 7 - Primeira Foto Juntos -->
+                    <div class="card" onclick="abrirModal('modal7')">
+                        <img src="imagens/principal/primeira_caminhada.jpg" alt="Primeira Foto" onerror="this.src='https://via.placeholder.com/280x158/E50914/fff?text=Primeira+Foto'">
+                        <div class="card-hover">
+                            <h3>Nossa primeira caminhada do Cirío</h3>
+                            <p>📸 O registro do início</p>
+                        </div>
+                    </div>
+                    
+
+                </div>
+                <button class="carrossel-btn proximo" onclick="moverCarrossel(this, 'esquerda')">›</button>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO 2: NOSSAS AVENTURAS ===== -->
+        <section class="categoria">
+            <h2 class="categoria-titulo">Nossas Aventuras</h2>
+            <div class="carrossel-container">
+                <button class="carrossel-btn anterior" onclick="moverCarrossel(this, 'direita')">‹</button>
+                <div class="carrossel">
+                    
+                    <!-- CARD 5 - Praia dos Amores -->
+                    <div class="card" onclick="abrirModal('modal8')">
+                        <img src="imagens/principal/pizzaria.jpg" alt="Praia" onerror="this.src='https://via.placeholder.com/280x158/E50914/fff?text=Praia'">
+                        <div class="card-hover">
+                            <h3>O dia do rodizio de Pizza</h3>
+                            <p>O dia que demos prejuizo</p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 6 - Fim de Semana na Serra -->
+                    <div class="card" onclick="abrirModal('modal9')">
+                        <img src="imagens/principal/lord.jpg" alt="Serra" onerror="this.src='https://via.placeholder.com/280x158/E50914/fff?text=Serra'">
+                        <div class="card-hover">
+                            <h3>O dia que descobriram a gente</h3>
+                            <p>Ate hj nao dsabemos o fofoqueiro</p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 7 - Dia no Parque -->
+                    <div class="card" onclick="abrirModal('modal10')">
+                        <img src="imagens/principal/nossadiverção.JPG" alt="Parque" onerror="this.src='https://via.placeholder.com/280x158/E50914/fff?text=Parque'">
+                        <div class="card-hover">
+                            <h3>Vila tranpolin</h3>
+                            <p>O dia que abrincamos mais que as crianças</p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 8 - Primeiro Cinema -->
+                    <div class="card" onclick="abrirModal('modal11')">
+                        <img src="imagens/principal/festa.jpg" alt="Cinema" onerror="this.src='https://via.placeholder.com/280x158/E50914/fff?text=Cinema'">
+                        <div class="card-hover">
+                            <h3>Pararraia</h3>
+                            <p>O dia que a nem a chuva nos parou</p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 13 - Nova Aventura -->
+                    <div class="card" onclick="abrirModal('modal12')">
+                        <img src="imagens/principal/caminhada cirio.JPG" alt="Nova Aventura" onerror="this.src='https://via.placeholder.com/280x158/E50914/fff?text=Nova+Aventura'">
+                        <div class="card-hover">
+                            <h3>Caminhada do Cirío</h3>
+                            <p>Quando notamos que virou nossa tradição</p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 14 - Última Aventura -->
+                    <div class="card" onclick="abrirModal('modal13')">
+                        <img src="imagens/principal/test.jpg" alt="Última Aventura" onerror="this.src='https://via.placeholder.com/280x158/E50914/fff?text=Ultima+Aventura'">
+                        <div class="card-hover">
+                            <h3>Minhaa festa de 50%</h3>
+                            <p>Dia de comemoração</p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 15 - Última Aventura -->
+                    <div class="card" onclick="abrirModal('modal14')">
+                        <img src="imagens/principal/global2.jpg" alt="Última Aventura" onerror="this.src='https://via.placeholder.com/280x158/E50914/fff?text=Ultima+Aventura'">
+                        <div class="card-hover">
+                            <h3>Global Citizen</h3>
+                            <p>O dia que fomos ver nosso amigo Chris Martin</p>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="carrossel-btn proximo" onclick="moverCarrossel(this, 'esquerda')">›</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== MODAIS INDEPENDENTES ===== -->
+    <!-- MODAL 1 - Quando a gente se notou -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal1')">&times;</span>
+            <div class="modal-video">
+                <img src="imagens/principal/primeira troca de olhares.jpg" alt="Descrição da foto" style="width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            <div class="modal-info">
+                <h2>Quando a gente se notou</h2>
+                <p>03 de Fevereiro, 2022. Foi nesse período que tudo começou, durante as aulas do temível Quitos, onde muitos desistiram e nós continuamos. Quando ele estava explicando lógica de programação, pediu que explicássemos sobre lógicas presentes no dia a dia. Nesse exato momento, você apareceu, ensinando como fazer um bolo, mas sem usar a lógica... </p>
+                <p>Nesse dia, notei aquela donzela fazendo um bolo imaginário e com vergonha. Nesse dia, conheci você e soube que era essa menina que eu conquistaria.</p>
+                <div class="modal-metadata">
+                    <span class="match">99% relevante</span>
+                    <span class="ano">2022</span>
+                    <span class="duracao">Para sempre</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal1')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2 - O dia do nosso primeiro Beijo -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal2')">&times;</span>
+            <div class="modal-video">
+                <img src="imagens/principal/primeirobj.jpg" alt="Descrição da foto" style="width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            <div class="modal-info">
+                <h2>O nosso primeiro beijo</h2>
+                <p>Nesse dia, marcamos de ir ao igarapé, eu já com segundas intenções de tentar conseguir o primeiro beijo. Chegando lá, nós conversamos, brincamos e demos várias risadas, mas nada de beijo. Infelizmente, naquele momento não consegui o beijo, devido ela estar com vergonha, mas ainda não tinha desistido.</p>
+                <p>Fomos para a casa do Samuel, lá ficamos na resenha, cantando, escutando música, dançando e comendo, todos juntos. Eu já analisando o "terreno", elaborando um plano de como poderia beijá-la. Fui para os fundos da casa, fiquei um tempo lá e depois chamei ela. Quando ela veio, disfarcei um pouco, depois puxei para o beijo...</p>
+                <div class="modal-metadata">
+                    <span class="match">98% relevante</span>
+                    <span class="ano">2022</span>
+                    <span class="duracao">6 horas</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal2')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3 - Primeiros encontros -->
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal3')">&times;</span>
+            <div class="modal-video">
+                 <img src="imagens/principal/primeiros passeios.jpg" alt="Descrição da foto" style="width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            <div class="modal-info">
+                <h2>Primeiros encontros</h2>
+                    <p>Naquele banco da praça, onde a maioria dos nossos encontros acontecia, 
+                    foi lá que ficamos vários dias conversando, rindo e se beijando, até porque a gente ainda não tinha assumido o namoro.
+                    Aquele banco, no canto da praça, marcou a nossa história, onde passávamos horas conversando…</p>
+                <div class="modal-metadata">
+                    <span class="match">100% relevante</span>
+                    <span class="ano">2023</span>
+                    <span class="duracao">Um minuto</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal3')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 4 - Primeiro Cirio -->
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal4')">&times;</span>
+            <div class="modal-video">
+                <img src="imagens/principal/primeiro_cirio.jpg" alt="Descrição da foto" style="width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            <div class="modal-info">
+                <h2>Primeiro Cirio</h2>
+                <p>AAAAAntes de descrever a nossa historia, olha nossa foto kkkkkkkkk, a gente mudou muito kkkk, eu só estava aparelho e você parecia que estava quase uma semana de baixo de sol, chega estava escuraaaaa kkkkkk. 
+                Nesse período, foi a primeira vez que você veio aqui ora casa, não podia nem dormir juntos lembra, 
+                quase trancada no quarto kkkk, mas com o tempo você foi se acostumando, conversando com a mamãe e papai, 
+                veio pra gente prestigiar o círio. tudo isso sem contar que a gente estava ficando aproximadamente a uns 8 meses. </p>
+                <div class="modal-metadata">
+                    <span class="match">100% relevante</span>
+                    <span class="ano">2023</span>
+                    <span class="duracao">20 de Junho</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal4')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 5 - Nossa Primeira Viagem -->
+    <div id="modal5" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal5')">&times;</span>
+            <div class="modal-video">
+                <img src="imagens/principal/primeiro_passeio.jpg" alt="Descrição da foto" style="width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            <div class="modal-info">
+                <h2>Primeiro Passeio</h2>
+                <p>O dia que fomos para a praia, curtir e aproveitar o mes de junho. Mas nesse dia foi especial, pois foi nesse dia que mais conversamos, assuntos aleatorios e assuntos específicos.</p>
+                <div class="modal-metadata">
+                    <span class="match">98% relevante</span>
+                    <span class="ano">2024</span>
+                    <span class="duracao">2 dias</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal5')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 6 - Fim de Semana na Serra -->
+    <div id="modal6" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal6')">&times;</span>
+            <div class="modal-video">
+               <img src="imagens/principal/festaparent.jpg" alt="Descrição da foto" style="width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            <div class="modal-info">
+                <h2>A primeira festa da Familia</h2>
+        <p>Primeira vez que participei de um festa de familia, nesse dia a gente ficou tudo junto de uma casa lotada kkkk, quando era a festa fomos pra la, ficamos falando das peças da familia, conhecendo cada um. Logo depois, teve a reunião para foto de casa "famila", quando a  familia barbosa me chamou junto pra foto, nesse momento me senti da familia. </p>
+                <div class="modal-metadata">
+                    <span class="match">97% relevante</span>
+                    <span class="ano">2024</span>
+                    <span class="duracao">3 dias</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal6')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 7 - Dia no Parque -->
+    <div id="modal7" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal7')">&times;</span>
+            <div class="modal-video">
+               <img src="imagens/principal/primeira_caminhada.jpg" alt="Descrição da foto" style="width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            <div class="modal-info">
+                <h2>Nossa primeira caminhada do Cirío</h2>
+                <p>Nesse periodo, quando começamos a participar do cirio juntos, tentando mostrar nossa forma de gratidão  para nossa senhora, decidimos ir fazer uma caminha de casa ate a basilica, mal sabiamos que isso iria virar nossa tradiçao.</p>
+                <div class="modal-metadata">
+                    <span class="match">96% relevante</span>
+                    <span class="ano">2024</span>
+                    <span class="duracao">Dia inteiro</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal7')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 8 - Primeiro Cinema -->
+    <div id="modal8" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal8')">&times;</span>
+            <div class="modal-video">
+                <iframe width="100%" height="400" src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="modal-info">
+                <h2>Primeiro Cinema</h2>
+                <p>Filme romântico, mas eu só conseguia olhar para você. Pipoca compartilhada, mãos dadas no escuro. Não lembro do filme, mas lembro de cada segundo ao seu lado.</p>
+                <div class="modal-metadata">
+                    <span class="match">97% relevante</span>
+                    <span class="ano">2023</span>
+                    <span class="duracao">2 horas</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal8')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 9 - Meu Aniversário -->
+    <div id="modal9" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal9')">&times;</span>
+            <div class="modal-video">
+                <iframe width="100%" height="400" src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="modal-info">
+                <h2>Meu Aniversário</h2>
+                <p>A surpresa mais linda que alguém poderia fazer. Você fez desse dia o mais especial da minha vida. Nunca tinha ganhado uma festa surpresa, e você fez questão de tornar esse dia inesquecível.</p>
+                <div class="modal-metadata">
+                    <span class="match">99% relevante</span>
+                    <span class="ano">2024</span>
+                    <span class="duracao">24 horas</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal9')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 10 - Nosso Primeiro Natal -->
+    <div id="modal10" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal10')">&times;</span>
+            <div class="modal-video">
+                <iframe width="100%" height="400" src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="modal-info">
+                <h2>Nosso Primeiro Natal</h2>
+                <p>Juntos sob as luzes, trocando presentes e trocando amor. Que todos os natais sejam assim, com você ao meu lado. A noite foi mágica, mas você era o verdadeiro presente.</p>
+                <div class="modal-metadata">
+                    <span class="match">98% relevante</span>
+                    <span class="ano">2024</span>
+                    <span class="duracao">Noite especial</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal10')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 11 - Reveillon -->
+    <div id="modal11" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal11')">&times;</span>
+            <div class="modal-video">
+                <iframe width="100%" height="400" src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="modal-info">
+                <h2>Reveillon</h2>
+                <p>Viramos o ano juntos, e minhas 3 primeiras palavras de 2025 foram "eu te amo". Que venham muitos outros anos assim, com você estampando um sorriso no meu rosto.</p>
+                <div class="modal-metadata">
+                    <span class="match">99% relevante</span>
+                    <span class="ano">2025</span>
+                    <span class="duracao">Virada</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal11')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 12 - Dia dos Namorados -->
+    <div id="modal12" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal12')">&times;</span>
+            <div class="modal-video">
+                <iframe width="100%" height="400" src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="modal-info">
+                <h2>Dia dos Namorados</h2>
+                <p>Nosso primeiro Dia dos Namorados. Jantar à luz de velas, chocolate e a certeza de que você é o amor da minha vida. Nunca imaginei que pudesse ser tão feliz.</p>
+                <div class="modal-metadata">
+                    <span class="match">100% relevante</span>
+                    <span class="ano">2024</span>
+                    <span class="duracao">Noite romântica</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal12')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 13 - Troca de Alianças -->
+    <div id="modal13" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal13')">&times;</span>
+            <div class="modal-video">
+                <img src="imagens/principal/primeiro_passeio.jpg" alt="Alianças" style="width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            <div class="modal-info">
+                <h2>Primeiro passeio</h2>
+                <p>O momento em que oficializamos nosso compromisso. Essas alianças representam tudo o que construímos juntos. Cada vez que olho para a minha, lembro do seu sorriso naquele dia especial.</p>
+                <div class="modal-metadata">
+                    <span class="match">100% relevante</span>
+                    <span class="ano">2022</span>
+                    <span class="duracao">Para sempre</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal13')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 14 - Primeira Foto Juntos -->
+    <div id="modal14" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal14')">&times;</span>
+            <div class="modal-video">
+                <img src="imagens/principal/primeirafoto.jpg" alt="Primeira Foto" style="width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            <div class="modal-info">
+                <h2>Primeira Foto Juntos</h2>
+                <p>O primeiro registro oficial do nosso amor. Olha como éramos tímidos! Mal sabíamos que essa seria apenas a primeira de muitas fotos que iríamos tirar juntos. Essa foto está no meu coração para sempre.</p>
+                <div class="modal-metadata">
+                    <span class="match">99% relevante</span>
+                    <span class="ano">2022</span>
+                    <span class="duracao">Momento eterno</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal14')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 15 - Nova Aventura -->
+    <div id="modal15" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal15')">&times;</span>
+            <div class="modal-video">
+                <img src="imagens/capas/nova_aventura.jpg" alt="Nova Aventura" style="width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            <div class="modal-info">
+                <h2>Nova Aventura</h2>
+                <p>Mais uma história escrita por nós. Cada aventura nos aproxima mais e me faz ter certeza de que você é a pessoa certa para todas as próximas aventuras da minha vida.</p>
+                <div class="modal-metadata">
+                    <span class="match">98% relevante</span>
+                    <span class="ano">2024</span>
+                    <span class="duracao">Inesquecível</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal15')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 16 - Última Aventura -->
+    <div id="modal16" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal16')">&times;</span>
+            <div class="modal-video">
+                <img src="imagens/capas/ultima_aventura.jpg" alt="Última Aventura" style="width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            <div class="modal-info">
+                <h2>Última Aventura</h2>
+                <p>Nossa mais recente aventura juntos. Mal posso esperar pelas próximas! Cada momento ao seu lado é único e especial.</p>
+                <div class="modal-metadata">
+                    <span class="match">99% relevante</span>
+                    <span class="ano">2024</span>
+                    <span class="duracao">Recentemente</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal16')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 17 - Momento Novo -->
+    <div id="modal17" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal17')">&times;</span>
+            <div class="modal-video">
+                <img src="imagens/capas/momento_novo.jpg" alt="Momento Novo" style="width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            <div class="modal-info">
+                <h2>Momento Novo</h2>
+                <p>Mais um momento especial que vivemos juntos. Cada dia ao seu lado é um presente que a vida me dá.</p>
+                <div class="modal-metadata">
+                    <span class="match">100% relevante</span>
+                    <span class="ano">2024</span>
+                    <span class="duracao">Especial</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal17')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 18 - Último Momento -->
+    <div id="modal18" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modal18')">&times;</span>
+            <div class="modal-video">
+                <img src="imagens/capas/ultimo_momento.jpg" alt="Último Momento" style="width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            <div class="modal-info">
+                <h2>Último Momento</h2>
+                <p>Nosso momento mais recente. Ainda temos muitos pela frente, e mal posso esperar para viver cada um deles ao seu lado.</p>
+                <div class="modal-metadata">
+                    <span class="match">99% relevante</span>
+                    <span class="ano">2024</span>
+                    <span class="duracao">Agora</span>
+                </div>
+                <button class="btn-assistir" onclick="fecharModal('modal18')">▶ Assistir novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== FUNÇÕES PARA CONTROLAR OS MODAIS =====
+        
+        // Função para abrir o modal específico
+        function abrirModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Trava a rolagem
+        }
+
+        // Função para fechar o modal específico
+        function fecharModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto'; // Libera a rolagem
+        }
+
+        // Fechar modal clicando fora dele
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // ===== CARROSSEL DO HERO =====
+        let slideAtual = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const indicadores = document.querySelectorAll('.indicador');
+        let intervaloCarrossel;
+
+        // Função para mostrar um slide específico
+        function mostrarSlide(index) {
+            // Remove active de todos os slides e indicadores
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicadores.forEach(ind => ind.classList.remove('active'));
+            
+            // Ativa o slide e indicador atual
+            slides[index].classList.add('active');
+            indicadores[index].classList.add('active');
+            
+            slideAtual = index;
+        }
+
+        // Função para próximo slide
+        function proximoSlide() {
+            let novoSlide = slideAtual + 1;
+            if (novoSlide >= slides.length) {
+                novoSlide = 0;
+            }
+            mostrarSlide(novoSlide);
+        }
+
+        // Função para slide anterior
+        function slideAnterior() {
+            let novoSlide = slideAtual - 1;
+            if (novoSlide < 0) {
+                novoSlide = slides.length - 1;
+            }
+            mostrarSlide(novoSlide);
+        }
+
+        // Função para mudar para um slide específico (usado nos indicadores)
+        function mudarSlide(index) {
+            mostrarSlide(index);
+            
+            // Reinicia o temporizador quando muda manualmente
+            clearInterval(intervaloCarrossel);
+            iniciarCarrossel();
+        }
+
+        // Inicia o carrossel automático
+        function iniciarCarrossel() {
+            intervaloCarrossel = setInterval(proximoSlide, 5000); // Muda a cada 5 segundos
+        }
+
+        // Pausa o carrossel quando o mouse está sobre o hero
+        const heroSection = document.querySelector('.hero.carrossel-hero');
+        if (heroSection) {
+            heroSection.addEventListener('mouseenter', () => {
+                clearInterval(intervaloCarrossel);
+            });
+
+            // Retoma o carrossel quando o mouse sai
+            heroSection.addEventListener('mouseleave', () => {
+                iniciarCarrossel();
+            });
+        }
+
+        // Inicia o carrossel quando a página carrega
+        window.addEventListener('load', () => {
+            if (slides.length > 0) {
+                iniciarCarrossel();
+            }
+        });
+
+        // ===== FUNÇÕES EXTRAS =====
+        function abrirAssinatura() {
+            alert('❤️ Você acabou de assinar a melhor série do mundo: "Nossa História de Amor"! Temporadas: Para sempre. Episódios: Todos os dias ao seu lado.');
+        }
+
+        function mostrarHistoria() {
+            alert('Kadu e Manu, uma história de amor que começou em 2022 e continua se escrevendo a cada dia. Esse site é só uma pequena homenagem a tudo que vivemos juntos! ❤️');
+        }
+
+        // ===== CONTROLE DOS CARROSSÉIS COM LOOP E BOTÕES CORRIGIDOS =====
+        function moverCarrossel(botao, direcao) {
+            const container = botao.closest('.carrossel-container');
+            const carrossel = container.querySelector('.carrossel');
+            const cards = carrossel.querySelectorAll('.card');
+            
+            if (cards.length === 0) return;
+            
+            // Pega o primeiro card para calcular a largura
+            const cardStyle = window.getComputedStyle(cards[0]);
+            const cardWidth = cards[0].offsetWidth + parseInt(cardStyle.marginRight || 8);
+            
+            // Scroll atual
+            let scrollAtual = carrossel.scrollLeft;
+            
+            // Calcula novo scroll baseado na direção
+            let novoScroll;
+            if (direcao === 'esquerda') {
+                // Botão da direita (›) - move para esquerda (diminui scroll)
+                novoScroll = scrollAtual - cardWidth;
+            } else {
+                // Botão da esquerda (‹) - move para direita (aumenta scroll)
+                novoScroll = scrollAtual + cardWidth;
+            }
+            
+            // Largura total do carrossel
+            const maxScroll = carrossel.scrollWidth - carrossel.clientWidth;
+            
+            // Verifica se chegou no final (para loop)
+            if (novoScroll >= maxScroll - 5) { // Tolerância de 5px
+                // Se chegou no final, volta para o início
+                carrossel.scrollTo({
+                    left: 0,
+                    behavior: 'smooth'
+                });
+            } 
+            // Verifica se chegou no início (para loop reverso)
+            else if (novoScroll <= 5) { // Tolerância de 5px
+                // Se chegou no início, vai para o final
+                carrossel.scrollTo({
+                    left: maxScroll,
+                    behavior: 'smooth'
+                });
+            } 
+            else {
+                // Scroll normal
+                carrossel.scrollTo({
+                    left: novoScroll,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // ===== NAVBAR DINÂMICA =====
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('solid');
+            } else {
+                navbar.classList.remove('solid');
+            }
+        });
+    </script>
+</body>
+</html>

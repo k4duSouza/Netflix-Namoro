@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Quem está assistindo?</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="perfis-page">
+    <!-- LOGO NETFLIX -->
+    <a href="principal.html" class="netflix-logo">NETFLIX</a>
+    
+    <div class="perfis-container">
+        <h1 class="quem-esta-assistindo">Quem está assistindo?</h1>
+        
+        <div class="perfis-grid">
+            <!-- PERFIL KADU -->
+            <div class="perfil-card" data-tooltip="Kadu" onclick="selecionarPerfil('Kadu')">
+                <div class="avatar-container">
+                    <img src="imagens/login/kadu_icone.jpg" alt="Kadu" class="avatar" onerror="this.src='https://via.placeholder.com/150x150/333/fff?text=Kadu'">
+                    <div class="avatar-hover-effect"></div>
+                </div>
+                <span class="perfil-nome"></span>
+            </div>
+            
+            <!-- PERFIL MANU -->
+            <div class="perfil-card" data-tooltip="Manu" onclick="selecionarPerfil('Manu')">
+                <div class="avatar-container">
+                    <img src="imagens/login/manu_icone.jpg" alt="Manu" class="avatar" onerror="this.src='https://via.placeholder.com/150x150/333/fff?text=Manu'">
+                    <div class="avatar-hover-effect"></div>
+                </div>
+                <span class="perfil-nome"></span>
+            </div>
+            
+            <!-- PERFIL NÓS - ESPECIAL -->
+            <div class="perfil-card especial" data-tooltip=" Nós " onclick="selecionarPerfil('nos')">
+                <div class="avatar-container">
+                    <img src="imagens/login/nos_icone.jpg" alt="Nós" class="avatar" onerror="this.src='https://via.placeholder.com/150x150/E50914/fff?text=N%C3%B3s'">
+                    <div class="avatar-hover-effect"></div>
+                </div>
+                <span class="perfil-nome"></span>
+            </div>
+           
+        </div>
+        
+        <button class="gerenciar-perfis" onclick="gerenciarPerfis()">GERENCIAR PERFIS</button>
+    </div>
+
+    <script>
+        // Função para selecionar perfil
+        function selecionarPerfil(perfil) {
+            document.body.style.opacity = '0.5';
+            
+            setTimeout(() => {
+                if(perfil === 'nos' || perfil === 'Nós' || perfil === 'NOS') {
+                    window.location.href = 'principal.html'; // Redireciona para tela principal
+                } else {
+                    alert(`Bem-vindo(a), ${perfil}! ❤️`);
+                    document.body.style.opacity = '1';
+                }
+            }, 300);
+        }
+        
+        // Função para gerenciar perfis
+        function gerenciarPerfis() {
+            alert('⚙️ Gerenciar perfis - Em desenvolvimento ⚙️');
+        }
+        
+        // Efeito de hover nos cards
+        document.querySelectorAll('.perfil-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.zIndex = '100';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.zIndex = '1';
+            });
+        });
+    </script>
+</body>
+</html>
